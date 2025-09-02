@@ -67,7 +67,8 @@ class Command(BaseCommand):
         print(f"Import execution time: {elapsed_time:.6f} seconds")
         print("+++++++++++++++++++++---")
 
-    def _get_file_paths(self, paths: List[str]) -> List[Path]:
+    @staticmethod
+    def _get_file_paths(paths: List[str]) -> List[Path]:
         """
         Finds file(s) path(s), with the supported File Formats
         Returns:
@@ -95,7 +96,8 @@ class Command(BaseCommand):
                 )
         return file_paths
 
-    def _get_file_hash(self, file_path: Path, chunk_size: int) -> str:
+    @staticmethod
+    def _get_file_hash(file_path: Path, chunk_size: int) -> str:
         """
         Generates a SHA-256 hash for a file, reading it in chunks.
         """
@@ -108,7 +110,8 @@ class Command(BaseCommand):
                 hasher.update(chunk)
         return hasher.hexdigest()
 
-    def _get_rows_from_file(self, file_path: Path) -> Iterator[dict]:
+    @staticmethod
+    def _get_rows_from_file(file_path: Path) -> Iterator[dict]:
         """
         Reads a file and yields POI data
         """
@@ -166,7 +169,8 @@ class Command(BaseCommand):
         except Exception as e:
             self.stdout.write(self.style.ERROR(f"Error processing {file_path}: {e}"))
 
-    def _row_to_poi(self, row: dict) -> PointOfInterest:
+    @staticmethod
+    def _row_to_poi(row: dict) -> PointOfInterest:
         """
         Transforms row dictionary into PointOfInterest model instance,
         """
@@ -208,5 +212,6 @@ class Command(BaseCommand):
             ratings=ratings_values,
         )
 
-    def _bulk_insert(self, batch: List[PointOfInterest]) -> None:
+    @staticmethod
+    def _bulk_insert(batch: List[PointOfInterest]) -> None:
         PointOfInterest.objects.bulk_create(batch, ignore_conflicts=True)
