@@ -4,6 +4,6 @@ from app.models import PointOfInterest
 
 @admin.register(PointOfInterest)
 class PointOfInterestAdmin(admin.ModelAdmin):
-    list_display = ["id", "external_id", "name", "category", "average_rating", "point"]
+    list_display = ["id", "external_id", "name", "category", "average_rating"]
     list_filter = ["category"]
     search_fields = ["=id", "=external_id"]
