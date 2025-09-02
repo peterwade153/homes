@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.models import PointOfInterest, FileHash
+from app.models import PointOfInterest
 
 @admin.register(PointOfInterest)
 class PointOfInterestAdmin(admin.ModelAdmin):
