@@ -2,7 +2,7 @@ Created a django app "app" to manage to file imports.
 
 Assumptions
 1. Possibility of duplicate external ID (uniqueness not enforced).
-2. Generate a hash from the file contents, to avoid multiple file imports. Assuming files are not Updated in place
+2. Generates a hash from the file contents, to avoid multiple file imports. Assuming file contents are not Updated in place
 3.
 
 
