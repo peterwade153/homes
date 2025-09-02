@@ -1,17 +1,12 @@
 Created a django app "app" to manage to file imports.
 
-Approach
-1. Generate a hash from the file contents, to avoid multiple file imports
-2. Read, Process, and Save POI Data for each File.
-3.
-
-
 Assumptions
 1. Possibility of duplicate external ID (uniqueness not enforced).
-2.
+2. Generate a hash from the file contents, to avoid multiple file imports. Assuming files are not Updated in place
 3.
 
 
 Improvements
-1. 
-2.
+1. Unit tests and test DB set up.
+2. 
+3.

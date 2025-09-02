@@ -58,4 +58,4 @@ http://localhost:8000/
 </pre>
 
 
-** There are projects noted in the Notes.file included in the repo.
+** There are projects notes in the Notes.txt, file included in the repo.
