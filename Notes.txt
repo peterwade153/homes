@@ -3,7 +3,7 @@ Created a django app "app" to manage to file imports.
 Assumptions
 1. Possibility of duplicate external ID (uniqueness not enforced).
 2. Generates a hash from the file contents, to avoid multiple file imports. Assuming file contents are not Updated in place
-3.
+3. Geo data is saved as Points (PointField), where benefits of geospatial functionality.
 
 
 Improvements
