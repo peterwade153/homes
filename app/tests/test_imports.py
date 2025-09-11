@@ -30,6 +30,7 @@ class ImportFileDataCommandTests(TestCase):
         fieldnames = ["poi_id", "poi_name", "poi_category", "poi_latitude", "poi_longitude", "poi_ratings"]
         self.temp_file = NamedTemporaryFile(mode="w+", delete=False, suffix=".csv")
         writer = csv.DictWriter(self.temp_file, fieldnames=fieldnames)
+        writer.writeheader()
         writer.writerows(data)
         self.temp_file.flush()
         self.temp_file.close()
