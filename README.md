@@ -24,7 +24,7 @@ git clone https://github.com/peterwade153/homes.git
 
 To start the app
 <pre>
-docker-compose up
+docker compose up
 </pre>
 
 
