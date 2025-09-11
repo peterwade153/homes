@@ -54,8 +54,8 @@ docker exec -it app python manage.py createsuperuser
 
 Access the dashboard with link below
 <pre>
-http://localhost:8000/
+http://localhost:8000/admin
 </pre>
 
 
-** There are projects notes in the Notes.txt, file included in the repo.
+** There are project notes in the Notes.txt, file included in the repo.
