@@ -36,7 +36,7 @@ jobs:
         python -m pip install --upgrade pip
         sudo apt-get update
         sudo apt-get install -y binutils libproj-dev gdal-bin
-        pip install GDAL
+        pip install GDAL==3.8.2
         pip install -r requirements.txt
     - name: Run Tests
       run: |
