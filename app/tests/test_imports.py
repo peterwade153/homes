@@ -19,7 +19,7 @@ class ImportFileDataCommandTests(TestCase):
 
         try:
             # Call the management command
-            call_command("import_data", tmp_file_path)
+            call_command("import", tmp_file_path)
             # Assert that objects were created
             self.assertEqual(PointOfInterest.objects.count(), 2)
 
