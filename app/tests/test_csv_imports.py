@@ -32,11 +32,9 @@ class ImportFileDataCommandTests(TestCase):
         writer = csv.DictWriter(self.temp_file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(data)
-        self.temp_file.flush()
-        self.temp_file.close()
 
     def tearDown(self):
-        os.unlink(self.temp_file.name)
+        os.remove(self.temp_file.name)
 
     def test_csv_file_import(self):
         call_command("import", self.temp_file.name)
