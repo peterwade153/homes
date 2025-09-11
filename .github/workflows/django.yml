@@ -19,7 +19,7 @@ jobs:
           POSTGRES_USER: postgres
         ports:
           - 5432:5432
-        # needed because the postgres container does not provide a healthcheck
+        # needed because the PostgreSQL container does not provide a health check
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
           
     strategy:
@@ -36,7 +36,6 @@ jobs:
         python -m pip install --upgrade pip
         sudo apt-get update
         sudo apt-get install -y binutils libproj-dev gdal-bin
-        pip install GDAL==3.8.2
         pip install -r requirements.txt
     - name: Run Tests
       run: |
