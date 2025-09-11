@@ -9,8 +9,8 @@ class ImportFileDataCommandTests(TestCase):
 
     def test_csv_file_import(self):
         csv_file_content = """poi_id,poi_name,poi_category,poi_latitude,poi_longitude,poi_ratings
-    1,ちぬまん,restaurant,26.2155192001422,127.6854314,'3.0;4.0;3.0;5.0;2.0;3.0;2.0;2.0;2.0;2.0'
-    2,Otter Creek State Forest,nature-reserve,43.7149419232782,-75.3263056920684,'3.0;4.0;3.0;5.0;2.0;3.0;2.0;2.0;2.0;2.0'
+    1,ちぬまん,restaurant,26.2155192001422,127.6854314,'{3.0,4.0,3.0,5.0,2.0,3.0,2.0,2.0,2.0,2.0}'
+    2,Otter Creek State Forest,nature-reserve,43.7149419232782,-75.3263056920684,'{3.0,4.0,3.0,5.0,2.0,3.0,2.0,2.0,2.0,2.0}'
     """
         tmp_file_path = ""
         with NamedTemporaryFile(mode="w+", delete=False, suffix=".csv") as tmp_file:
