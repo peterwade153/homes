@@ -10,8 +10,8 @@ from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
 from django.core.management.base import CommandParser
 
-from app.models import PointOfInterest
 from app.models import FileHash
+from app.models import PointOfInterest
 from app.file_processor.file_formats import FileFormatEnum
 from app.file_processor.processors import CSVFileProcessor
 from app.file_processor.processors import JSONFileProcessor
@@ -79,8 +79,14 @@ class Command(BaseCommand):
 
         for p in paths:
             path = Path(p)
-            if path.is_file() and path.suffix.lower() in supported_formats:
-                file_paths.append(path)
+            if path.is_file():
+                if path.suffix.lower() in supported_formats:
+                    file_paths.append(path)
+                else:
+                    raise CommandError(
+                        f"Unsupported file format {p}"
+                        f" Supported formats {', '.join(supported_formats)}"
+                    )
             elif path.is_dir():
                 file_paths.extend(
                     [
@@ -90,10 +96,7 @@ class Command(BaseCommand):
                     ]
                 )
             else:
-                raise CommandError(
-                    f"Invalid Path, or Unsupported file format {p} "
-                    f"Supported formats {', '.join(supported_formats)}"
-                )
+                raise CommandError(f"Invalid Path {p} ")
         return file_paths
 
     @staticmethod
