@@ -8,7 +8,7 @@ from tempfile import NamedTemporaryFile
 
 class ImportFileDataCommandTests(TestCase):
 
-    def test_csv_file_import(self):
+    def setUp(self) -> None:
         data = [
             {
                 "poi_id": 1, 
@@ -28,28 +28,26 @@ class ImportFileDataCommandTests(TestCase):
             }
         ]
         fieldnames = ["poi_id", "poi_name", "poi_category", "poi_latitude", "poi_longitude", "poi_ratings"]
-        tmp_file_path = ""
-        with NamedTemporaryFile(mode="w+", delete=False, suffix=".csv") as tmp_file:
-            writer = csv.DictWriter(tmp_file, fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerows(data)
+        self.temp_file = NamedTemporaryFile(mode="w+", delete=False, suffix=".csv")
+        writer = csv.DictWriter(self.temp_file, fieldnames=fieldnames)
+        writer.writerows(data)
+        self.temp_file.flush()
+        self.temp_file.close()
 
-            # tmp_file.write(csv_file_content)
-            tmp_file_path = tmp_file.name
+    def tearDown(self):
+        os.unlink(self.temp_file.name)
 
-        try:
-            # Call the management command
-            call_command("import", tmp_file_path)
-            # Assert that objects were created
-            self.assertEqual(PointOfInterest.objects.count(), 2)
+    def test_csv_file_import(self):
+        call_command("import", self.temp_file.name)
 
-            poi_1 = PointOfInterest.objects.get(external_id=1)
-            self.assertEqual(poi_1.name, "ちぬまん")
-            self.assertEqual(poi_1.category, "restaurant")
+        # Assert that objects were created
+        self.assertEqual(PointOfInterest.objects.count(), 2)
 
-            poi_2 = PointOfInterest.objects.get(external_id=2)
-            self.assertEqual(poi_2.name, "Otter Creek State Forest")
-            self.assertEqual(poi_2.category, "nature-reserve")
-        finally:
-            # Clean up temporary file
-            os.remove(tmp_file_path)
+        poi_1 = PointOfInterest.objects.get(external_id=1)
+        self.assertEqual(poi_1.name, "ちぬまん")
+        self.assertEqual(poi_1.category, "restaurant")
+
+        poi_2 = PointOfInterest.objects.get(external_id=2)
+        self.assertEqual(poi_2.name, "Otter Creek State Forest")
+        self.assertEqual(poi_2.category, "nature-reserve")
+

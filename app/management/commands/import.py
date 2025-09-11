@@ -125,8 +125,6 @@ class Command(BaseCommand):
             file_processor = file_processor_map.get(processor_key)
             row_iter = file_processor.read_file_content(file_path=file_path)
             for row in row_iter:
-                print('----')
-                print(row)
                 row_dict = file_processor.row_to_dict(row=row)
                 poi = PointOfInterest(
                     external_id=row_dict.get("external_id"),
