@@ -8,5 +8,4 @@ Assumptions
 
 Improvements
 1. Unit tests and test DB set up.
-2. 
-3.
+2. Improve Json processor, not loading entire file into memory.
