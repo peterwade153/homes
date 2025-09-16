@@ -3,6 +3,7 @@ import os
 import csv
 from django.test import TestCase
 from django.core.management import call_command
+from django.core.management.base import CommandError
 from app.models import PointOfInterest
 from tempfile import NamedTemporaryFile
 
@@ -63,17 +64,14 @@ class ImportFileDataCommandTests(TestCase):
         )
 
     def test_invalid_import_output(self):
-        out = io.StringIO()
-        call_command("import", "sample", stdout=out)
-        self.assertIn("Invalid Path sample", out.getvalue())
+        with self.assertRaisesMessage(CommandError, "Invalid Path sample"):
+            call_command("import", "sample")
 
     def test_unsupported_file_format_import_output(self):
-        out = io.StringIO()
-        call_command("import", "sample.txt", stdout=out)
-        self.assertIn("Imported 2 records", out.getvalue())
+        with self.assertRaisesMessage(CommandError, "Invalid Path sample.txt"):
+            call_command("import", "sample.txt")
 
     def test_no_paths_found_output(self):
-        out = io.StringIO()
-        call_command("import", "", stdout=out)
-        self.assertIn("No file paths found", out.getvalue())
+        with self.assertRaisesMessage(CommandError, "No file paths found"):
+            call_command("import", "sample.txt")
     
