@@ -15,7 +15,8 @@ class ImportJsonFileDataCommandTests(TestCase):
             {
                 "id": 1, 
                 "name": "ちぬまん", 
-                "category": "restaurant", 
+                "category": "restaurant",
+                "description": "poytpahip",
                 "coordinates": {
                     "latitude": 43.0479552005377,
                     "longitude": 6.1494078
@@ -25,7 +26,8 @@ class ImportJsonFileDataCommandTests(TestCase):
             {
                 "id": 2, 
                 "name": "Otter Creek State Forest", 
-                "category": "nature-reserve", 
+                "category": "nature-reserve",
+                "description": "heqdetbl",
                 "coordinates": {
                     "latitude": 43.0479552005377,
                     "longitude": 6.1494078
