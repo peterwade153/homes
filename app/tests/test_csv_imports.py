@@ -67,11 +67,17 @@ class ImportFileDataCommandTests(TestCase):
         with self.assertRaisesMessage(CommandError, "Invalid Path sample"):
             call_command("import", "sample")
 
-    def test_unsupported_file_format_import_output(self):
+    def test_invalid_path_import_output(self):
         with self.assertRaisesMessage(CommandError, "Invalid Path sample.txt"):
             call_command("import", "sample.txt")
 
     def test_no_paths_found_output(self):
         with self.assertRaisesMessage(CommandError, "No file paths found"):
             call_command("import", "")
-    
+
+    def test_unsupported_file_format_import_output(self):
+        with self.assertRaisesMessage(CommandError, "Unsupported file format sample.txt Supported formats CSV, JSON, XML"):
+            temp_file = NamedTemporaryFile(mode="w+", delete=False, suffix=".txt")
+            call_command("import", temp_file.name)
+
+            os.unlink(temp_file.name)
