@@ -16,16 +16,20 @@ class ImportJsonFileDataCommandTests(TestCase):
                 "id": 1, 
                 "name": "ちぬまん", 
                 "category": "restaurant", 
-                "latitude": "26.2155192001422", 
-                "longitude": "127.6854314", 
+                "coordinates": {
+                    "latitude": 43.0479552005377,
+                    "longitude": 6.1494078
+                },
                 "ratings": [3.0,4.0,3.0,5.0,2.0,3.0,2.0,2.0,2.0,2.0]
             },
             {
                 "id": 2, 
                 "name": "Otter Creek State Forest", 
                 "category": "nature-reserve", 
-                "latitude": "43.7149419232782", 
-                "longitude": "-75.3263056920684", 
+                "coordinates": {
+                    "latitude": 43.0479552005377,
+                    "longitude": 6.1494078
+                }, 
                 "ratings": [3.0,4.0,3.0,5.0,2.0,3.0,2.0,2.0,2.0,2.0]
             }
         ]
