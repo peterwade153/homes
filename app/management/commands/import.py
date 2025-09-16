@@ -85,7 +85,7 @@ class Command(BaseCommand):
                 else:
                     raise CommandError(
                         f"Unsupported file format {p}"
-                        f" Supported formats {', '.join(supported_formats)}"
+                        f" Supported formats {', '.join(sorted(supported_formats))}"
                     )
             elif path.is_dir():
                 file_paths.extend(
