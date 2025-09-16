@@ -77,7 +77,7 @@ class ImportFileDataCommandTests(TestCase):
 
     def test_unsupported_file_format_import_output(self):
         temp_file = NamedTemporaryFile(mode="w+", delete=False, suffix=".txt")
-        with self.assertRaisesMessage(CommandError, f"Unsupported file format {temp_file.name} Supported formats .xml, .csv, .json"):
+        with self.assertRaisesMessage(CommandError, f"Unsupported file format {temp_file.name} Supported formats .csv, .json, .xml"):
             call_command("import", temp_file.name)
 
         os.unlink(temp_file.name)
