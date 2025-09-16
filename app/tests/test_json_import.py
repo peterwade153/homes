@@ -1,9 +1,7 @@
-import io
 import json
 import os
 from django.test import TestCase
 from django.core.management import call_command
-from django.core.management.base import CommandError
 from app.models import PointOfInterest
 from tempfile import NamedTemporaryFile
 
