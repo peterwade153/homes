@@ -73,5 +73,5 @@ class ImportFileDataCommandTests(TestCase):
 
     def test_no_paths_found_output(self):
         with self.assertRaisesMessage(CommandError, "No file paths found"):
-            call_command("import", "sample.txt")
+            call_command("import", "")
     
