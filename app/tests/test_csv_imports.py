@@ -1,3 +1,4 @@
+import io
 import os
 import csv
 from django.test import TestCase
@@ -52,3 +53,27 @@ class ImportFileDataCommandTests(TestCase):
         self.assertEqual(poi_2.name, "Otter Creek State Forest")
         self.assertEqual(poi_2.category, "nature-reserve")
 
+    def test_command_output(self):
+        # Capture stdout
+        out = io.StringIO()
+        call_command("import", self.temp_file.name, stdout=out)
+        self.assertIn(
+            f"Successfully imported 2 Point of Interest records from {self.temp_file.name}", 
+            out.getvalue()
+        )
+
+    def test_invalid_import_output(self):
+        out = io.StringIO()
+        call_command("import", "sample", stdout=out)
+        self.assertIn("Invalid Path sample", out.getvalue())
+
+    def test_unsupported_file_format_import_output(self):
+        out = io.StringIO()
+        call_command("import", "sample.txt", stdout=out)
+        self.assertIn("Imported 2 records", out.getvalue())
+
+    def test_no_paths_found_output(self):
+        out = io.StringIO()
+        call_command("import", "", stdout=out)
+        self.assertIn("No file paths found", out.getvalue())
+    
