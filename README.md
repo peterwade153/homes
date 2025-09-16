@@ -1,3 +1,5 @@
+[![CI](https://github.com/peterwade153/homes/actions/workflows/django.yml/badge.svg)](https://github.com/peterwade153/homes/actions/workflows/django.yml)
+
 # Homes
 
 App to manage Point of Interest Locations. 
