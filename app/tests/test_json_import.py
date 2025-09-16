@@ -18,7 +18,7 @@ class ImportJsonFileDataCommandTests(TestCase):
                 "category": "restaurant", 
                 "latitude": "26.2155192001422", 
                 "longitude": "127.6854314", 
-                "ratings": "{3.0,4.0,3.0,5.0,2.0,3.0,2.0,2.0,2.0,2.0}"
+                "ratings": [3.0,4.0,3.0,5.0,2.0,3.0,2.0,2.0,2.0,2.0]
             },
             {
                 "id": 2, 
@@ -26,7 +26,7 @@ class ImportJsonFileDataCommandTests(TestCase):
                 "category": "nature-reserve", 
                 "latitude": "43.7149419232782", 
                 "longitude": "-75.3263056920684", 
-                "ratings": "{3.0,4.0,3.0,5.0,2.0,3.0,2.0,2.0,2.0,2.0}"
+                "ratings": [3.0,4.0,3.0,5.0,2.0,3.0,2.0,2.0,2.0,2.0]
             }
         ]
         self.temp_file = NamedTemporaryFile(mode="w+", delete=False, suffix=".json")
