@@ -1,3 +1,4 @@
+import io
 import os
 import xml.etree.ElementTree as ET
 from django.test import TestCase
@@ -59,3 +60,12 @@ class ImportXMLFileDataCommandTests(TestCase):
         poi_2 = PointOfInterest.objects.get(external_id=2)
         self.assertEqual(poi_2.name, "Otter Creek State Forest")
         self.assertEqual(poi_2.category, "nature-reserve")
+
+    def test_command_output(self):
+        # Capture stdout
+        out = io.StringIO()
+        call_command("import", self.temp_file.name, stdout=out)
+        self.assertIn(
+            f"Successfully imported 2 Point of Interest records from {self.temp_file.name}", 
+            out.getvalue()
+        )
